@@ -5,6 +5,9 @@
       <nuxt-link to="/place"><li>{{ users[0].name | firstName }}'s Places</li></nuxt-link>
       <nuxt-link to="/group"><li>{{ users[0].name | firstName }}'s Group Trips</li></nuxt-link>
     </ul>
+    <icon-base class="menu" icon-name="menu" icon-color="white" width="28" height="28">
+      <icon-three-dot />
+    </icon-base>
     <transition-group :class="{ 'place' : (page === 'place'), 'group' : (page === 'group') }" tag="div">
       <div class="profile-photo" key="profile">
         <img :src="users[0].img" />
@@ -27,14 +30,69 @@
         <span v-if="page === 'group'" class="user-trip">{{ users[0].trips[0] }}</span>
         <span v-else>{{ users[0].name }}</span>
       </h2>
+      <div class="side-icon" key="sideicon">
+        <icon-base 
+          v-if="page === 'index'"
+          icon-name="mail" 
+          icon-color="white" 
+          width="22" 
+          height="22"
+        >
+          <icon-mail />
+        </icon-base>
+        <icon-base 
+          v-else
+          icon-name="plus" 
+          width="18" 
+          height="18"
+        >
+          <icon-plus />
+        </icon-base>
+      </div>
+      <aside key="aside">
+        <p class="map-pin">
+          <icon-base 
+            icon-name="mappin" 
+            width="18" 
+            height="18"
+          >
+            <icon-map-pin />
+          </icon-base>
+          British Overseas Territory
+        </p>
+        <p class="calendar">
+          <icon-base 
+            icon-name="calendar" 
+            width="18" 
+            height="18"
+          >
+            <icon-calendar />
+          </icon-base>
+          {{ users[0].days }} days traveling
+        </p>
+      </aside>
     </transition-group>
   </nav>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import IconBase from './IconBase.vue'
+import IconMail from './IconMail.vue'
+import IconPlus from './IconPlus.vue'
+import IconMapPin from './IconMapPin.vue'
+import IconCalendar from './IconCalendar.vue'
+import IconThreeDot from './IconThreeDot.vue'
 
 export default {
+  components: {
+    IconBase,
+    IconMail,
+    IconPlus,
+    IconMapPin,
+    IconCalendar,
+    IconThreeDot
+  },
   computed: mapState(['page', 'users']),
   filters: {
     firstName(input) {
@@ -66,6 +124,27 @@ nav {
   max-width: 1000px;
   margin: 0 auto;
   position: relative;
+}
+
+.menu {
+  position: absolute;
+  right: 0;
+  top: 8px;
+  cursor: pointer;
+}
+
+aside p {
+  text-align: right;
+  position: absolute;
+  right: 0;
+  top: 250px;
+  color: white;
+}
+
+.calendar,
+.map-pin {
+  transition: 0.4s all ease-out;
+  opacity: 0;
 }
 
 @mixin group($top, $left) {
@@ -132,6 +211,18 @@ nav {
   @include group(355px, 0);
 }
 
+.side-icon {
+  position: absolute;
+  top: 220px;
+  right: 0;
+  display: block;
+  transition: 0.4s all ease-out;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50% 50%;
+  cursor: pointer;
+}
+
 //animations
 .place {
   .follow {
@@ -143,6 +234,13 @@ nav {
   .profile-name {
     transform: translate3d(140px, -125px, 0) scale(0.75);
     color: white;
+  }
+  .side-icon {
+    transform: translate3d(0, -40px, 0);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .calendar {
+    opacity: 1;
   }
 }
 
@@ -157,23 +255,20 @@ nav {
       border-radius: 50% 50%;
     }
   }
+  .two,
+  .three,
+  .four {
+    transition: 0.4s all ease-in-out;
+    opacity: 1;
+  }
   .two {
     transform: translate3d(65px, 5px, 0);
-    transition: 0.4s all ease-in-out;
-    //transition-delay: 0.05s;
-    opacity: 1;
   }
   .three {
     transform: translate3d(120px, 5px, 0);
-    transition: 0.4s all ease-in-out;
-    //transition-delay: 0.1s;
-    opacity: 1;
   }
   .four {
     transform: translate3d(175px, 5px, 0);
-    transition: 0.4s all ease-in-out;
-    //transition-delay: 0.15s;
-    opacity: 1;
   }
   .online {
     opacity: 1;
@@ -181,6 +276,13 @@ nav {
   .profile-name {
     transform: translate3d(0px, -125px, 0);
     color: white;
+  }
+  .side-icon {
+    transform: translate3d(0, -40px, 0);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .map-pin {
+    opacity: 1;
   }
 }
 
