@@ -81,7 +81,7 @@
             </p>
           </aside>
         </transition-group>
-        
+
         <app-stats :users="users" />
       </nav>
     </div>
@@ -204,7 +204,7 @@ header {
 }
 
 .bk-img {
-  position: fixed;
+  position: absolute;
   width: 100vw;
   height: 300px;
   overflow: hidden;

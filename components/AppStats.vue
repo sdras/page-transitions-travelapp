@@ -33,6 +33,7 @@ export default {
   top: 330px;
   width: 60%;
   justify-content: space-between;
+  line-height: 1.2;
 }
 
 .lg {
@@ -41,5 +42,6 @@ export default {
 
 .bio {
   width: 60%;
+  line-height: 1.4;
 }
 </style>
