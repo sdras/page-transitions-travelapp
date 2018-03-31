@@ -81,6 +81,8 @@
             </p>
           </aside>
         </transition-group>
+        
+        <app-stats :users="users" />
       </nav>
     </div>
   </header>
@@ -88,6 +90,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import AppStats from './AppStats.vue'
 import IconBase from './IconBase.vue'
 import IconMail from './IconMail.vue'
 import IconPlus from './IconPlus.vue'
@@ -97,6 +100,7 @@ import IconThreeDot from './IconThreeDot.vue'
 
 export default {
   components: {
+    AppStats,
     IconBase,
     IconMail,
     IconPlus,
@@ -169,7 +173,7 @@ header {
 }
 
 @mixin header ($imgurl) {
-  background: url($imgurl) center bottom fixed;
+  background: url($imgurl) center center;
   background-size: cover;
   position: absolute;
   width: 100vw;
@@ -188,17 +192,6 @@ header {
   @include header('/header3.jpg');
 }
 
-h1 {
-  position: absolute;
-  z-index: 3000;
-  color: white;
-}
-
-.show {
-  position: absolute;
-  z-index: 3000;
-}
-
 .bk-enter-active,
 .bk-leave-active {
   transition: all 0.4s ease;
@@ -211,7 +204,7 @@ h1 {
 }
 
 .bk-img {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 300px;
   overflow: hidden;

@@ -9,7 +9,8 @@ const createStore = () => {
           name: 'Sophia Gonzalez',
           img: '/profile2.jpg',
           location: 'San Francisco',
-          bio: 'Guerilla art projects and consumer reports',
+          bio:
+            'Had a brief careerwith jack-in-the-boxes in Phoenix, AZ. Spent several months managing squirt guns and implementing toy elephants.',
           following: 789,
           followers: 2748,
           photos: 94,
