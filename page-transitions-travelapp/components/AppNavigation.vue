@@ -4,10 +4,14 @@
       <nuxt-link exact to="/"><li>index</li></nuxt-link>
       <nuxt-link to="/place"><li>place</li></nuxt-link>
     </ul>
-    <div class="profile-photo" :class="{ 'active' : (page === 'place') }">
-      <img src="/profile2.jpg" />
-    </div>
-
+    <transition-group :class="{ 'place' : (page === 'place') }" tag="div">
+      <div class="profile-photo" 
+        key="profile"
+      >
+        <img src="/profile2.jpg" />
+      </div>
+      <button key="follow" class="follow">Follow</button>
+    </transition-group>
   </nav>
 </template>
 
@@ -29,8 +33,44 @@ ul {
   a,
   a:active,
   a:visited {
-    color: black;
+    color: white;
     text-decoration: none;
+  }
+}
+
+nav {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.profile-photo {
+  width: 200px;
+  position: absolute;
+  top: 150px;
+  left: 200px;
+  transition: 0.5s all ease-out;
+  img {
+    width: 100%;
+    border-radius: 4px;
+  }
+}
+
+.follow {
+  position: absolute;
+  font-weight: bold;
+  width: 150px;
+  top: 320px;
+  left: 420px;
+  display: block;
+  transition: 0.5s all ease-out;
+}
+
+.place {
+  .follow {
+    transform: translate3d(-215px, -80px, 0);
+  }
+  .profile-photo {
+    transform: translate3d(-20px, -100px, 0) scale(0.75);
   }
 }
 
@@ -53,21 +93,5 @@ ul {
 
 svg {
   fill: #a8dadc;
-}
-
-.active {
-  fill: #e63946;
-  .rect {
-    transform: translateY(30px);
-  }
-  .circ {
-    transform: translateX(30px) scale(0.5);
-  }
-  .text {
-    transform: rotate(90deg) scaleX(0.08) translate3d(-300px, -35px, 0);
-  }
-  .footer {
-    transform: translateX(100px);
-  }
 }
 </style>

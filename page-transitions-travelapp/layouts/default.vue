@@ -1,6 +1,8 @@
 <template>
   <div>
-    <app-navigation />
+    <header>
+      <app-navigation />
+    </header>
     <nuxt/>
   </div>
 </template>
@@ -50,8 +52,9 @@ button {
   border: 0;
   cursor: pointer;
   padding: 6px 8px;
-  font-size: 13px;
+  font-size: 16px;
   color: white;
+  border-radius: 4px;
 }
 
 h1,
@@ -60,6 +63,14 @@ h3,
 h4 {
   font-family: 'Playfair Display', serif;
   font-weight: normal;
+}
+
+header {
+  width: 100vw;
+  height: 300px;
+  position: relative;
+  background: url('/header1.jpg') center center;
+  background-size: cover;
 }
 
 .container {
