@@ -1,13 +1,13 @@
 <template>
   <nav>
     <ul>
-      <nuxt-link exact to="/"><li>Sophia's Home</li></nuxt-link>
-      <nuxt-link to="/place"><li>Sophia's Places</li></nuxt-link>
-      <nuxt-link to="/group"><li>Sophia's Group Trips</li></nuxt-link>
+      <nuxt-link exact to="/"><li>{{ users[0].name | firstName }}'s Home</li></nuxt-link>
+      <nuxt-link to="/place"><li>{{ users[0].name | firstName }}'s Places</li></nuxt-link>
+      <nuxt-link to="/group"><li>{{ users[0].name | firstName }}'s Group Trips</li></nuxt-link>
     </ul>
     <transition-group :class="{ 'place' : (page === 'place'), 'group' : (page === 'group') }" tag="div">
       <div class="profile-photo" key="profile">
-        <img src="/profile2.jpg" />
+        <img :src="users[0].img" />
         <div class="online"></div>
       </div>
       <div class="profile-photo-secondary two" key="profile2">
@@ -23,7 +23,7 @@
         <div class="online"></div>
       </div>
       <button key="follow" class="follow">Follow</button>
-      <h2 key="profile-name" class="profile-name">Sophia Gonzalez</h2>
+      <h2 key="profile-name" class="profile-name">{{ users[0].name }}</h2>
     </transition-group>
   </nav>
 </template>
@@ -32,7 +32,13 @@
 import { mapState } from 'vuex'
 
 export default {
-  computed: mapState(['page'])
+  computed: mapState(['page', 'users']),
+  filters: {
+    firstName(input) {
+      var lastIndex = input.lastIndexOf(' ')
+      return input.substring(0, lastIndex)
+    }
+  }
 }
 </script>
 

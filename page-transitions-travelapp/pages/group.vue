@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <p>Group</p>
-  </div>
+  </main>
 </template>
 
 <script>

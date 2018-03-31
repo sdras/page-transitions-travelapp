@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <p>Place</p>
-  </div>
+  </main>
 </template>
 
 <script>

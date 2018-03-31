@@ -107,6 +107,11 @@ header {
   }
 }
 
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .container {
   text-align: center;
   font-size: 20px;
