@@ -18,13 +18,9 @@ export default {
 
 <style>
 body {
-  background: #1d3557;
-  color: white;
-  font-family: 'Lora', serif;
-  margin: 20px;
-}
-
-html {
+  background: white;
+  color: #333;
+  font-family: 'Josefin Sans', serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -44,17 +40,26 @@ html {
 a,
 a:visited,
 a:active {
-  color: white;
+  color: orangered;
   text-decoration: none;
 }
 
 button {
   margin-bottom: 10px;
-  background: #43aa8b;
+  background: orangered;
   border: 0;
   cursor: pointer;
   padding: 6px 8px;
   font-size: 13px;
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: normal;
 }
 
 .container {
