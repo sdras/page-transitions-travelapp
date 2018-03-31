@@ -23,7 +23,10 @@
         <div class="online"></div>
       </div>
       <button key="follow" class="follow">Follow</button>
-      <h2 key="profile-name" class="profile-name">{{ users[0].name }}</h2>
+      <h2 key="profile-name" class="profile-name">
+        <span v-if="page === 'group'" class="user-trip">{{ users[0].trips[0] }}</span>
+        <span v-else>{{ users[0].name }}</span>
+      </h2>
     </transition-group>
   </nav>
 </template>
@@ -157,19 +160,19 @@ nav {
   .two {
     transform: translate3d(65px, 5px, 0);
     transition: 0.4s all ease-in-out;
-    transition-delay: 0.05s;
+    //transition-delay: 0.05s;
     opacity: 1;
   }
   .three {
     transform: translate3d(120px, 5px, 0);
     transition: 0.4s all ease-in-out;
-    transition-delay: 0.1s;
+    //transition-delay: 0.1s;
     opacity: 1;
   }
   .four {
     transform: translate3d(175px, 5px, 0);
     transition: 0.4s all ease-in-out;
-    transition-delay: 0.15s;
+    //transition-delay: 0.15s;
     opacity: 1;
   }
   .online {
