@@ -1,8 +1,9 @@
 <template>
   <nav>
     <ul>
-      <nuxt-link exact to="/"><li>index</li></nuxt-link>
-      <nuxt-link to="/place"><li>place</li></nuxt-link>
+      <nuxt-link exact to="/"><li>Sophia's Home</li></nuxt-link>
+      <nuxt-link to="/place"><li>Sophia's Places</li></nuxt-link>
+      <nuxt-link to="/group"><li>Sophia's Group Trips</li></nuxt-link>
     </ul>
     <transition-group :class="{ 'place' : (page === 'place') }" tag="div">
       <div class="profile-photo" 
@@ -11,6 +12,7 @@
         <img src="/profile2.jpg" />
       </div>
       <button key="follow" class="follow">Follow</button>
+      <h2 key="profile-name" class="profile-name">Sophia Gonzalez</h2>
     </transition-group>
   </nav>
 </template>
@@ -26,9 +28,11 @@ export default {
 <style scoped lang="scss">
 ul {
   list-style: none;
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.4);
   li {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 40px;
   }
   a,
   a:active,
@@ -41,14 +45,15 @@ ul {
 nav {
   max-width: 1000px;
   margin: 0 auto;
+  position: relative;
 }
 
 .profile-photo {
   width: 200px;
   position: absolute;
   top: 150px;
-  left: 200px;
-  transition: 0.5s all ease-out;
+  left: 0px;
+  transition: 0.4s all ease;
   img {
     width: 100%;
     border-radius: 4px;
@@ -60,9 +65,18 @@ nav {
   font-weight: bold;
   width: 150px;
   top: 320px;
-  left: 420px;
+  left: 220px;
   display: block;
-  transition: 0.5s all ease-out;
+  transition: 0.4s all ease-out;
+}
+
+.profile-name {
+  position: absolute;
+  top: 355px;
+  left: 0px;
+  font-size: 35px;
+  display: block;
+  transition: 0.4s all ease-out;
 }
 
 .place {
@@ -71,6 +85,10 @@ nav {
   }
   .profile-photo {
     transform: translate3d(-20px, -100px, 0) scale(0.75);
+  }
+  .profile-name {
+    transform: translate3d(140px, -125px, 0) scale(0.75);
+    color: white;
   }
 }
 

@@ -71,6 +71,40 @@ header {
   position: relative;
   background: url('/header1.jpg') center center;
   background-size: cover;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: -moz-radial-gradient(
+      center,
+      ellipse cover,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 36%,
+      rgba(0, 0, 0, 0.65) 100%
+    ); /* FF3.6-15 */
+    background: -webkit-radial-gradient(
+      center,
+      ellipse cover,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 36%,
+      rgba(0, 0, 0, 0.65) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 36%,
+      rgba(0, 0, 0, 0.65) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(
+        startColorstr='#00000000',
+        endColorstr='#a6000000',
+        GradientType=1
+      ); /* IE6-9 fallback on horizontal gradient */
+    opacity: 0.6;
+  }
 }
 
 .container {
