@@ -1,5 +1,6 @@
 <template>
   <main>
+
     <div class="places">
       <p class="top">{{ users[0].name }}'s Places</p>
       <h1>{{ places[0].name }}</h1>
@@ -9,15 +10,17 @@
       <div class="main-img"></div>
       <p>{{ places[0].description }}</p>
     </div>
+
     <aside class="sidebar">
       <h3>Other Trips</h3>
-      <div v-for="place in places" class="location">
+      <div v-for="place in places" class="location" :key="place.name">
         <img :src="place.img" :alt="place.name" />
         <p class="top"><strong>{{ place.name }}</strong></p>
         <p>{{ place.description }}</p>
         <hr />
       </div>
     </aside>
+
   </main>
 </template>
 

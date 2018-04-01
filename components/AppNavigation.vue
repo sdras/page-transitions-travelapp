@@ -34,11 +34,17 @@
             <img src="/profile5.jpg" />
             <div class="online"></div>
           </div>
-          <button key="follow" class="follow">Follow</button>
+
+          <button @click="toggleFollow" :class="[following ? followclass : '', follow]" key="follow">
+            <span v-if="following">&#10004; Following</span>
+            <span v-else>Follow</span>
+          </button>
+
           <h2 key="profile-name" class="profile-name">
             <span v-if="page === 'group'" class="user-trip">{{ users[0].trips[0] }}</span>
             <span v-else>{{ users[0].name }}</span>
           </h2>
+
           <div class="side-icon" key="sideicon">
             <icon-base 
               v-if="page === 'index'"
@@ -58,6 +64,7 @@
               <icon-plus />
             </icon-base>
           </div>
+
           <aside key="aside">
             <p class="map-pin">
               <icon-base 
@@ -99,6 +106,23 @@ import IconCalendar from './IconCalendar.vue'
 import IconThreeDot from './IconThreeDot.vue'
 
 export default {
+  data() {
+    return {
+      following: false,
+      follow: 'follow',
+      followclass: 'active-follow'
+    }
+  },
+  methods: {
+    toggleFollow() {
+      if (this.following) {
+        this.$store.commit('removeFollower')
+      } else {
+        this.$store.commit('addFollower')
+      }
+      this.following = !this.following
+    }
+  },
   components: {
     AppStats,
     IconBase,
@@ -316,7 +340,15 @@ aside p {
 .follow {
   font-weight: bold;
   width: 150px;
+  transition: 1s all ease;
   @include group(320px, 220px);
+  &:focus {
+    outline: 1px dotted rgb(5, 134, 106);
+  }
+}
+
+.active-follow {
+  background: rgb(5, 134, 106);
 }
 
 .profile-name {
@@ -330,7 +362,7 @@ aside p {
   right: 0;
   display: block;
   transition: 0.4s all ease-out;
-  padding: 12px;
+  padding: 12px 12px 9px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 50% 50%;
   cursor: pointer;

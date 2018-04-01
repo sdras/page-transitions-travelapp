@@ -1,18 +1,20 @@
 <template>
   <div>
-    
+
     <icon-base 
       v-for="n in rating" 
       icon-name="full star" 
       color="orangered"
+      :key="n"
     >
       <icon-star-full />
     </icon-base>
 
     <icon-base 
-      v-for="n in maxRating" 
+      v-for="x in maxRating" 
       icon-name="empty star" 
       color="orangered"
+      :key="x + 5"
     >
       <icon-star-empty />
     </icon-base>

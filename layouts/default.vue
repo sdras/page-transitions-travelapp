@@ -101,13 +101,14 @@ hr {
 
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .page-enter,
 .page-leave-active {
   opacity: 0;
-  transform: translate3d(0, 15px, 0);
+  /* transform: translate3d(0, 5px, 0); */
+  transform: translateZ(0);
   backface-visibility: hidden;
 }
 </style>
