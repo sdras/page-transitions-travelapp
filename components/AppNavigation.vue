@@ -215,7 +215,7 @@ header {
   width: 100vw;
   position: relative;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(4, 67, 98, 0.25);
 }
 
 ul {

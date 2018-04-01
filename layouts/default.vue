@@ -28,6 +28,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  line-height: 1.2;
 }
 
 *,
@@ -68,34 +69,18 @@ main {
   margin: 0 auto;
 }
 
-.container {
-  text-align: center;
-  font-size: 20px;
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-}
-
 .page-enter-active {
-  transition: opacity 0.25s ease-out;
+  transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
 .page-leave-active {
-  transition: opacity 0.25s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .page-enter,
 .page-leave-active {
   opacity: 0;
-}
-
-.slide-left-enter,
-.slide-right-leave-active {
-  opacity: 0;
-  transform: translate(20px, 0);
-}
-
-.slide-left-leave-active,
-.slide-right-enter {
-  opacity: 0;
-  transform: translate(-20px, 0);
+  transform: scale(0.99);
+  transform-origin: 50% 0%;
 }
 </style>
