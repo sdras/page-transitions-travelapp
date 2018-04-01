@@ -83,4 +83,8 @@ aside {
   width: 100%;
   height: 240px;
 }
+
+.top {
+  margin: 30px 0 0;
+}
 </style>

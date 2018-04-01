@@ -85,5 +85,7 @@ main {
 .page-enter,
 .page-leave-active {
   opacity: 0;
+  transform: translate3d(0, 15px, 0);
+  backface-visibility: hidden;
 }
 </style>

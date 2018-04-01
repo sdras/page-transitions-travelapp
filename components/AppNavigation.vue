@@ -197,7 +197,7 @@ header {
 
 .bk-enter,
 .bk-leave-to {
-  transform: scale(1.1);
+  transform: scale(1.1) translateZ(0);
   opacity: 0;
 }
 
@@ -263,6 +263,8 @@ aside p {
   top: $top;
   left: $left;
   display: block;
+  backface-visibility: hidden;
+  transform: translateZ(0);
   transition: 0.4s all ease-out;
 }
 

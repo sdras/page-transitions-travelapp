@@ -1,11 +1,11 @@
 <template>
   <main>
     <div class="wrapper">
-      <div class="box item1">One</div>
-      <div class="box item2">Two</div>
-      <div class="box item3">Three</div>
-      <div class="box item4">Four</div>
-      <div class="box item5">Five</div>
+      <div class="box item1"></div>
+      <div class="box item2"></div>
+      <div class="box item3"></div>
+      <div class="box item4"></div>
+      <div class="box item5"></div>
     </div>
   </main>
 </template>
@@ -14,21 +14,30 @@
 export default {}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .wrapper {
   margin: 0 0 20px 0;
   width: 60%;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(4, 24%);
-  grid-template-rows: repeat(3, 100px);
+  grid-template-rows: repeat(3, 120px);
   justify-content: center;
   align-content: end;
 }
 
 .box {
-  background-color: #444;
   border-radius: 3px;
+}
+
+$img-slug: hawaii !default;
+$class-slug: item !default;
+
+@for $i from 1 through 6 {
+  .#{$class-slug}#{$i} {
+    background: url('/hawaii#{$i}.jpg') center center no-repeat;
+    background-size: cover;
+  }
 }
 
 .item1 {
