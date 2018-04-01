@@ -21,7 +21,7 @@ const createStore = () => {
       places: [
         {
           name: 'Honululu',
-          stars: 5,
+          stars: 4,
           rating: 8.9,
           img: '/honolulu.jpg',
           description:
@@ -37,7 +37,7 @@ const createStore = () => {
         },
         {
           name: 'Burmuda',
-          stars: 4,
+          stars: 3,
           rating: 6.7,
           img: '/burmuda.jpg',
           description:

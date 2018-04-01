@@ -22,7 +22,6 @@
 import { mapState } from 'vuex'
 import IconBase from '~/components/IconBase.vue'
 import IconMapPin from '~/components/IconMapPin.vue'
-import { TweenMax, Sine } from 'gsap'
 
 export default {
   components: {
@@ -39,17 +38,6 @@ export default {
       container: this.$refs.mapcontain,
       style: 'mapbox://styles/sdrasner/cjfg0watl6rkv2sllf6hepdd5'
     })
-
-    TweenMax.staggerFrom(
-      '.location',
-      0.7,
-      {
-        opacity: 0,
-        delay: 0.2,
-        ease: Sine.easeOut
-      },
-      0.2
-    )
   }
 }
 </script>
@@ -88,7 +76,7 @@ main {
   float: right;
   height: 400px;
   p {
-    margin-bottom: 15px;
+    margin: 10px 0;
   }
 }
 

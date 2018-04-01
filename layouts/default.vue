@@ -69,18 +69,13 @@ main {
   margin: 0 auto;
 }
 
-.page-enter-active {
-  transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
-}
-
+.page-enter-active,
 .page-leave-active {
-  transition: all 0.2s ease-in;
+  transition: all 0.2s ease;
 }
 
 .page-enter,
 .page-leave-active {
   opacity: 0;
-  transform: scale(0.99);
-  transform-origin: 50% 0%;
 }
 </style>

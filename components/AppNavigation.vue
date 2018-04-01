@@ -82,7 +82,7 @@
           </aside>
         </transition-group>
 
-        <app-stats :users="users" />
+        <app-stats v-if="page === 'index'" :users="users" />
       </nav>
     </div>
   </header>
@@ -123,8 +123,6 @@ header {
   width: 100vw;
   height: 300px;
   position: relative;
-  // background: url('/header1.jpg') no-repeat center center;
-  // background-size: cover;
   &:before {
     content: '';
     z-index: 10;
