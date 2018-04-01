@@ -67,7 +67,7 @@
               >
                 <icon-map-pin />
               </icon-base>
-              British Overseas Territory
+              United States
             </p>
             <p class="calendar">
               <icon-base 

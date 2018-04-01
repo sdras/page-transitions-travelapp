@@ -17,6 +17,8 @@ export default {
 
 
 <style>
+/* common styles shared through the application */
+
 body {
   background: white;
   color: #333;
@@ -67,6 +69,8 @@ h4 {
 main {
   max-width: 1000px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .top {
@@ -75,6 +79,24 @@ main {
   color: #666;
   padding: 0;
   margin: 30px 0 0;
+}
+
+.places {
+  width: 60%;
+}
+
+aside.sidebar {
+  width: 35%;
+  padding: 20px;
+  margin: 40px 0 0 20px;
+  background: #eee;
+  float: right;
+}
+
+hr {
+  border-top: 1px solid #ccc;
+  border-bottom: none;
+  margin-top: 15px;
 }
 
 .page-enter-active,

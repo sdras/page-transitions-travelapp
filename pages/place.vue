@@ -9,7 +9,7 @@
       <div class="main-img"></div>
       <p>{{ places[0].description }}</p>
     </div>
-    <aside>
+    <aside class="sidebar">
       <h3>Other Trips</h3>
       <div v-for="place in places" class="location">
         <img :src="place.img" :alt="place.name" />
@@ -38,11 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-main {
-  display: flex;
-  justify-content: space-between;
-}
-
 h1 {
   font-size: 45px;
   padding-bottom: 10px;
@@ -55,26 +50,8 @@ h1 {
   margin: 0 10px 10px 0;
 }
 
-hr {
-  border-top: 1px solid #ccc;
-  border-bottom: none;
-  margin-top: 15px;
-}
-
 p {
   margin: 10px 0;
-}
-
-.places {
-  width: 60%;
-}
-
-aside {
-  width: 35%;
-  padding: 20px;
-  margin: 40px 0 0 20px;
-  background: #eee;
-  float: right;
 }
 
 .main-img {
