@@ -69,6 +69,14 @@ main {
   margin: 0 auto;
 }
 
+.top {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #666;
+  padding: 0;
+  margin: 30px 0 0;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: all 0.2s ease;

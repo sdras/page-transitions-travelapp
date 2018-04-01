@@ -11,7 +11,12 @@
     </div>
     <aside>
       <h3>Other Trips</h3>
-
+      <div v-for="place in places" class="location">
+        <img :src="place.img" :alt="place.name" />
+        <p class="top"><strong>{{ place.name }}</strong></p>
+        <p>{{ place.description }}</p>
+        <hr />
+      </div>
     </aside>
   </main>
 </template>
@@ -44,12 +49,16 @@ h1 {
   border-bottom: 1px solid #ddd;
 }
 
-.top {
-  text-transform: uppercase;
-  font-size: 14px;
-  color: #666;
-  padding: 0;
-  margin: 30px 0 0;
+.location img {
+  width: 70px;
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+hr {
+  border-top: 1px solid #ccc;
+  border-bottom: none;
+  margin-top: 15px;
 }
 
 p {
