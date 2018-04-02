@@ -5,7 +5,7 @@
       <p class="top">{{ users[0].name }}'s Places</p>
       <h1>{{ places[0].name }}</h1>
       <p><strong>Rating: {{ places[0].rating }}</strong></p>
-      <p><app-star-rating /></p>
+      <div class="stars"><app-star-rating /></div>
 
       <div class="main-img"></div>
       <p>{{ places[0].description }}</p>
@@ -53,7 +53,8 @@ h1 {
   margin: 0 10px 10px 0;
 }
 
-p {
+p,
+.stars {
   margin: 10px 0;
 }
 
