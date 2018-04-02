@@ -45,7 +45,7 @@
             <span v-else>{{ users[0].name }}</span>
           </h2>
 
-          <div class="side-icon" key="sideicon">
+          <div  @click="addPlace" class="side-icon" key="sideicon">
             <icon-base 
               v-if="page === 'index'"
               icon-name="mail" 
@@ -55,15 +55,20 @@
             >
               <icon-mail />
             </icon-base>
+
             <icon-base 
               v-else
+              ref="plus"
               icon-name="plus" 
+              class="plus"
               width="18" 
               height="18"
             >
               <icon-plus />
             </icon-base>
           </div>
+
+          <div key="saveinfo" class="saveinfo">Saved!</div>
 
           <aside key="aside">
             <p class="map-pin">
@@ -76,6 +81,7 @@
               </icon-base>
               United States
             </p>
+
             <p class="calendar">
               <icon-base 
                 icon-name="calendar" 
@@ -97,6 +103,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { TimelineMax, Expo, Sine } from 'gsap'
 import AppStats from './AppStats.vue'
 import IconBase from './IconBase.vue'
 import IconMail from './IconMail.vue'
@@ -109,6 +116,7 @@ export default {
   data() {
     return {
       following: false,
+      saved: false,
       follow: 'follow',
       followclass: 'active-follow'
     }
@@ -121,6 +129,80 @@ export default {
         this.$store.commit('addFollower')
       }
       this.following = !this.following
+    },
+    addAnimation() {
+      let tl = new TimelineMax({ paused: true })
+
+      tl.add('start')
+      tl.to(
+        '.plus',
+        0.5,
+        {
+          rotation: -360,
+          transformOrigin: '50% 50%',
+          ease: Expo.easeOut
+        },
+        'start'
+      )
+      tl.to(
+        '.line2',
+        0.4,
+        {
+          scaleY: 0.5,
+          x: -2,
+          rotation: -45,
+          transformOrigin: '50% 100%',
+          ease: Expo.easeOut
+        },
+        'start'
+      )
+      tl.to(
+        '.line1',
+        0.4,
+        {
+          rotation: -50,
+          x: 7,
+          scaleX: 3,
+          transformOrigin: '50% 100%',
+          ease: Expo.easeOut
+        },
+        'start'
+      )
+      tl.fromTo(
+        '.saveinfo',
+        0.5,
+        {
+          autoAlpha: 0
+        },
+        {
+          autoAlpha: 1,
+          ease: Sine.easeOut
+        },
+        'start'
+      )
+      tl.to(
+        '.saveinfo',
+        0.5,
+        {
+          autoAlpha: 0,
+          ease: Sine.easeIn
+        },
+        'start+=1'
+      )
+
+      return tl
+    },
+    addPlace() {
+      var anim = this.addAnimation()
+
+      if (!this.saved) {
+        anim.restart()
+        this.saved = true
+      } else {
+        console.log('here')
+        anim.reverse(0).restart()
+        this.saved = false
+      }
     }
   },
   components: {
@@ -345,6 +427,17 @@ aside p {
   &:focus {
     outline: 1px dotted rgb(5, 134, 106);
   }
+}
+
+.saveinfo {
+  color: white;
+  position: absolute;
+  top: 194px;
+  font-size: 20px;
+  right: 56px;
+  text-align: right;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .active-follow {
