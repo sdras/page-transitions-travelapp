@@ -45,7 +45,7 @@
             <span v-else>{{ users[0].name }}</span>
           </h2>
 
-          <div  @click="addPlace" class="side-icon" key="sideicon">
+          <div @click="addPlace" class="side-icon" key="sideicon">
             <icon-base 
               v-if="page === 'index'"
               icon-name="mail" 
@@ -103,7 +103,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { TimelineMax, Expo, Sine } from 'gsap'
+import { TimelineMax, Expo, Back } from 'gsap'
 import AppStats from './AppStats.vue'
 import IconBase from './IconBase.vue'
 import IconMail from './IconMail.vue'
@@ -131,12 +131,12 @@ export default {
       this.following = !this.following
     },
     addAnimation() {
-      let tl = new TimelineMax({ paused: true })
+      const tl = new TimelineMax()
 
       tl.add('start')
       tl.to(
         '.plus',
-        0.5,
+        0.75,
         {
           rotation: -360,
           transformOrigin: '50% 50%',
@@ -146,7 +146,7 @@ export default {
       )
       tl.to(
         '.line2',
-        0.4,
+        0.7,
         {
           scaleY: 0.5,
           x: -2,
@@ -158,7 +158,7 @@ export default {
       )
       tl.to(
         '.line1',
-        0.4,
+        0.7,
         {
           rotation: -50,
           x: 7,
@@ -170,7 +170,7 @@ export default {
       )
       tl.fromTo(
         '.saveinfo',
-        0.5,
+        0.75,
         {
           autoAlpha: 0
         },
@@ -182,25 +182,65 @@ export default {
       )
       tl.to(
         '.saveinfo',
-        0.5,
+        0.25,
         {
           autoAlpha: 0,
           ease: Sine.easeIn
         },
-        'start+=1'
+        'start+=1.5'
       )
 
       return tl
     },
-    addPlace() {
-      var anim = this.addAnimation()
+    removeAnimation() {
+      const tl = new TimelineMax()
 
+      tl.add('begin')
+      tl.to(
+        '.plus',
+        0.75,
+        {
+          rotation: 0,
+          transformOrigin: '50% 50%',
+          ease: Expo.easeOut
+        },
+        'begin'
+      )
+      tl.to(
+        '.line2',
+        0.7,
+        {
+          scaleY: 1,
+          x: 0,
+          rotation: 0,
+          transformOrigin: '50% 100%',
+          ease: Expo.easeOut
+        },
+        'begin'
+      )
+      tl.to(
+        '.line1',
+        0.7,
+        {
+          rotation: 0,
+          x: 0,
+          scaleX: 1,
+          transformOrigin: '50% 100%',
+          ease: Back.easeOut
+        },
+        'begin'
+      )
+
+      tl.timeScale(1.2)
+
+      return tl
+    },
+    addPlace() {
       if (!this.saved) {
-        anim.restart()
+        this.addAnimation()
         this.saved = true
       } else {
-        console.log('here')
-        anim.reverse(0).restart()
+        this.removeAnimation()
         this.saved = false
       }
     }
