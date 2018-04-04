@@ -236,7 +236,7 @@ export default {
       return tl
     },
     addPlace() {
-      if (!this.saved) {
+      if (!this.saved && this.page !== 'index') {
         this.addAnimation()
         this.saved = true
       } else {
@@ -362,6 +362,12 @@ header {
   background: rgba(4, 67, 98, 0.25);
 }
 
+@media screen and (max-width: 1030px) {
+  .nav-wrapper {
+    padding: 0 20px;
+  }
+}
+
 ul {
   list-style: none;
   padding: 15px 0;
@@ -374,6 +380,13 @@ ul {
   a:visited {
     color: white;
     text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  ul,
+  aside {
+    display: none;
   }
 }
 

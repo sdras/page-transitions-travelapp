@@ -99,6 +99,25 @@ hr {
   margin-top: 15px;
 }
 
+@media screen and (max-width: 1030px) {
+  main {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    flex-direction: column;
+  }
+  .places {
+    width: 100%;
+  }
+  aside.sidebar {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: all 0.25s ease;
