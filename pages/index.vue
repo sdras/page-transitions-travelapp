@@ -49,15 +49,12 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  padding: 20px 0;
+  padding-top: 20px;
   border-top: 1px solid #ddd;
   margin-top: 120px;
-  display: flex;
-  justify-content: space-between;
 }
 
 .places {
-  width: 60%;
   img {
     float: left;
     margin: 0 15px 15px 0;
@@ -70,6 +67,12 @@ main {
   }
 }
 
+hr {
+  border-top: 1px solid #ddd;
+  border-bottom: none;
+  margin-top: 15px;
+}
+
 .mapcontain {
   width: 35%;
   float: right;
@@ -79,9 +82,10 @@ main {
   }
 }
 
-hr {
-  border-top: 1px solid #ddd;
-  border-bottom: none;
-  margin-top: 15px;
+@media screen and (max-width: 600px) {
+  .mapcontain {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 </style>

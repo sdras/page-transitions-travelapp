@@ -46,24 +46,11 @@
           </h2>
 
           <div @click="addPlace" class="side-icon" key="sideicon">
-            <icon-base 
-              v-if="page === 'index'"
-              icon-name="mail" 
-              icon-color="white" 
-              width="22" 
-              height="22"
-            >
+            <icon-base v-if="page === 'index'" icon-name="mail" icon-color="white" width="22" height="22">
               <icon-mail />
             </icon-base>
 
-            <icon-base 
-              v-else
-              ref="plus"
-              icon-name="plus" 
-              class="plus"
-              width="18" 
-              height="18"
-            >
+            <icon-base v-else icon-name="plus" class="plus" width="18" height="18">
               <icon-plus />
             </icon-base>
           </div>
@@ -72,22 +59,14 @@
 
           <aside key="aside">
             <p class="map-pin">
-              <icon-base 
-                icon-name="mappin" 
-                width="18" 
-                height="18"
-              >
+              <icon-base icon-name="map pin" width="18" height="18">
                 <icon-map-pin />
               </icon-base>
               United States
             </p>
 
             <p class="calendar">
-              <icon-base 
-                icon-name="calendar" 
-                width="18" 
-                height="18"
-              >
+              <icon-base icon-name="calendar" width="18" height="18">
                 <icon-calendar />
               </icon-base>
               {{ users[0].days }} days traveling

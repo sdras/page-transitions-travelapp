@@ -44,4 +44,22 @@ export default {
   width: 60%;
   line-height: 1.4;
 }
+
+@media screen and (max-width: 980px) {
+  .bio {
+    display: none;
+  }
+  .stats {
+    justify-content: flex-end;
+    div {
+      padding-left: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .stats {
+    display: none;
+  }
+}
 </style>
