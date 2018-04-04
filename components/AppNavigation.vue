@@ -156,7 +156,7 @@ export default {
       )
       tl.fromTo(
         '.saveinfo',
-        0.75,
+        0.5,
         {
           autoAlpha: 0
         },
@@ -168,12 +168,12 @@ export default {
       )
       tl.to(
         '.saveinfo',
-        0.25,
+        0.4,
         {
           autoAlpha: 0,
-          ease: Sine.easeIn
+          ease: Expo.easeIn
         },
-        'start+=1.5'
+        'start+=1'
       )
 
       return tl
@@ -249,8 +249,8 @@ export default {
     }
   },
   watch: {
-    menuOpened() {
-      if (this.menuOpened) {
+    menuOpened(val) {
+      if (val) {
         TweenMax.to('.first', 0.2, {
           x: 18,
           ease: Sine.easeOut
