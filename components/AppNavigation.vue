@@ -14,9 +14,14 @@
           <nuxt-link to="/place"><li>{{ users[0].name | firstName }}'s Places</li></nuxt-link>
           <nuxt-link to="/group"><li>{{ users[0].name | firstName }}'s Group Trips</li></nuxt-link>
         </ul>
-        <icon-base class="menu" icon-name="menu" icon-color="white" width="28" height="28">
-          <icon-three-dot />
-        </icon-base>
+
+        <div @click="menuOpened = !menuOpened">
+          <icon-base class="menu" icon-name="menu" icon-color="white" width="28" height="28">
+            <icon-three-dot/>
+          </icon-base>
+        </div>
+        <app-menu-drawer :menuOpened="menuOpened" />
+
         <transition-group tag="div">
           <div class="profile-photo" key="profile">
             <img :src="users[0].img" />
@@ -82,7 +87,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { TimelineMax, Expo, Back } from 'gsap'
+import { TimelineMax, Expo, Sine, Back } from 'gsap'
 import AppStats from './AppStats.vue'
 import IconBase from './IconBase.vue'
 import IconMail from './IconMail.vue'
@@ -90,12 +95,14 @@ import IconPlus from './IconPlus.vue'
 import IconMapPin from './IconMapPin.vue'
 import IconCalendar from './IconCalendar.vue'
 import IconThreeDot from './IconThreeDot.vue'
+import AppMenuDrawer from './AppMenuDrawer.vue'
 
 export default {
   data() {
     return {
       following: false,
       saved: false,
+      menuOpened: false,
       follow: 'follow',
       followclass: 'active-follow'
     }
@@ -231,13 +238,49 @@ export default {
     IconPlus,
     IconMapPin,
     IconCalendar,
-    IconThreeDot
+    IconThreeDot,
+    AppMenuDrawer
   },
   computed: mapState(['page', 'users']),
   filters: {
     firstName(input) {
       var lastIndex = input.lastIndexOf(' ')
       return input.substring(0, lastIndex)
+    }
+  },
+  watch: {
+    menuOpened() {
+      if (this.menuOpened) {
+        TweenMax.to('.first', 0.2, {
+          x: 18,
+          ease: Sine.easeOut
+        })
+        TweenMax.to('.last', 0.2, {
+          x: -18,
+          ease: Sine.easeOut
+        })
+        TweenMax.staggerTo(
+          '.first, .middle, .last',
+          0.2,
+          {
+            fill: '#7eebe6',
+            ease: Sine.easeOut
+          },
+          0.04
+        )
+      } else {
+        TweenMax.to('.first', 0.2, {
+          x: 0,
+          ease: Sine.easeIn
+        })
+        TweenMax.to('.last', 0.2, {
+          x: 0,
+          ease: Sine.easeIn
+        })
+        TweenMax.to('.first, .middle, .last', 0.2, {
+          fill: '#fff'
+        })
+      }
     }
   }
 }
@@ -553,6 +596,17 @@ aside p {
   }
   .map-pin {
     opacity: 1;
+  }
+}
+
+//make the icon aligned with the avatars that are similar on mobile
+@media screen and (max-width: 600px) {
+  .group,
+  .place {
+    .side-icon {
+      transform: translate3d(0, -65px, 0);
+      padding: 14px 14px 12px;
+    }
   }
 }
 
