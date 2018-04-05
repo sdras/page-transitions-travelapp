@@ -84,6 +84,7 @@ export default {
   top: 45px;
   padding: 20px;
   border-radius: 4px;
+  z-index: 5000;
 }
 
 a,
