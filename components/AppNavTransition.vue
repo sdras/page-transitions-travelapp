@@ -1,19 +1,10 @@
 <template>
   <transition-group tag="div">
-    <div class="profile-photo" key="profile">
-      <img :src="users[0].img" />
-      <div class="online"></div>
-    </div>
-    <div class="profile-photo-secondary two" key="profile2">
-      <img src="/profile3.jpg" />
-      <div class="online"></div>
-    </div>
-    <div class="profile-photo-secondary three" key="profile3">
-      <img src="/profile4.jpg" />
-      <div class="online"></div>
-    </div>
-    <div class="profile-photo-secondary four" key="profile4">
-      <img src="/profile5.jpg" />
+    <div v-for="(user, i) in users" 
+      :key="user.name" 
+      :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
+    > 
+      <img :src="user.img" />
       <div class="online"></div>
     </div>
 
@@ -58,7 +49,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import IconBase from './IconBase.vue'
 import IconMail from './IconMail.vue'
 import IconPlus from './IconPlus.vue'
@@ -77,10 +68,15 @@ export default {
     return {
       following: false,
       follow: 'follow',
-      followclass: 'active-follow'
+      followclass: 'active-follow',
+      activeUser: 'profile-photo',
+      secondaryUser: 'profile-photo-secondary'
     }
   },
-  computed: mapState(['page', 'users']),
+  computed: {
+    ...mapState(['page', 'users']),
+    ...mapGetters(['selectedUser'])
+  },
   methods: {
     toggleFollow() {
       if (this.following) {
@@ -352,19 +348,19 @@ aside p {
       border-radius: 50% 50%;
     }
   }
-  .two,
-  .three,
-  .four {
+  .profile-1,
+  .profile-2,
+  .profile-3 {
     transition: 0.4s all ease-in-out;
     opacity: 1;
   }
-  .two {
+  .profile-1 {
     transform: translate3d(65px, 5px, 0);
   }
-  .three {
+  .profile-2 {
     transform: translate3d(120px, 5px, 0);
   }
-  .four {
+  .profile-3 {
     transform: translate3d(175px, 5px, 0);
   }
   .online {

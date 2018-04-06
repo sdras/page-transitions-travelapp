@@ -16,6 +16,42 @@ const createStore = () => {
           photos: 94,
           days: 32,
           trips: ['Honolulu', 'Burmuda', 'Los Cabos', 'San Antonio']
+        },
+        {
+          name: 'Ben Allen',
+          img: '/profile3.jpg',
+          location: 'Boston',
+          bio:
+            'Bacon nerd. Freelance twitter practitioner. Social media nerd. Pop culture junkie. Proud alcohol advocate. Food geek.',
+          following: 140,
+          followers: 789,
+          photos: 32,
+          days: 5,
+          trips: ['Honolulu', 'Peru', 'San Francisco']
+        },
+        {
+          name: 'Jill Fernandez',
+          img: '/profile4.jpg',
+          location: 'Seattle',
+          bio:
+            'Prone to fits of apathy. Writer. Devoted gamer. Web scholar. Hipster-friendly music advocate. Problem solver. Student. Twitter fanatic.',
+          following: 590,
+          followers: 1705,
+          photos: 45,
+          days: 12,
+          trips: ['Honolulu', 'Tokyo', 'Osaka']
+        },
+        {
+          name: 'Cynthia Obel',
+          img: '/profile5.jpg',
+          location: 'Kentucky',
+          bio:
+            'Producing at the fulcrum of modernism and purpose to craft an inspiring, compelling and authentic brand narrative. My opinions belong to myself.',
+          following: 590,
+          followers: 1705,
+          photos: 45,
+          days: 12,
+          trips: ['Honolulu', 'Tokyo', 'Osaka']
         }
       ],
       places: [
@@ -44,6 +80,11 @@ const createStore = () => {
             'Wandered the cobblestone streets and quaint lanes of the town, which has been designated a UNESCO World Heritage site. A walking tour revealed historic architecture, colonial landmarks and alluring shops and restaurants.'
         }
       ]
+    },
+    getters: {
+      selectedUser: state => {
+        return state.users[0]
+      }
     },
     mutations: {
       updatePage(state, pageName) {
