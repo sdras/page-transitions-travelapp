@@ -24,7 +24,7 @@
 
         <app-nav-transition />
 
-        <app-stats v-if="page === 'index'" :users="users" />
+        <app-stats v-if="page === 'index'" :selectedUser="selectedUser" />
       </nav>
     </div>
   </header>
@@ -54,7 +54,7 @@ export default {
     AppNavTransition
   },
   computed: {
-    ...mapState(['page', 'users']),
+    ...mapState(['page']),
     ...mapGetters(['selectedUser'])
   },
   filters: {

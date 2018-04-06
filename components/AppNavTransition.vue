@@ -5,8 +5,8 @@
       :key="user.name" 
       :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
     > 
-      <img :src="user.img" />
       <div class="online"></div>
+      <img :src="user.img" />
     </div>
 
     <button @click="toggleFollow" :class="[following ? followclass : '', follow]" key="follow">
@@ -258,15 +258,14 @@ aside p {
 
 .profile-photo-secondary {
   @include group(150px, 0);
-  width: 50px;
-  height: 50px;
+  width: 200px;
   opacity: 0;
   transition: none;
   img {
     border-radius: 50% 50%;
   }
   .online {
-    @include online(10px, 0px, 1px solid black);
+    @include online(40px, 0px, 1px solid black);
   }
 }
 
@@ -276,6 +275,19 @@ aside p {
     transition: 0.4s all ease;
     width: 100%;
   }
+}
+
+.profile-0 {
+  transform: translate3d(-70px, -70px, 0) scale(0.25);
+}
+.profile-1 {
+  transform: translate3d(-15px, -70px, 0) scale(0.25);
+}
+.profile-2 {
+  transform: translate3d(40px, -70px, 0) scale(0.25);
+}
+.profile-3 {
+  transform: translate3d(95px, -70px, 0) scale(0.25);
 }
 
 .follow {
@@ -352,20 +364,12 @@ aside p {
       border-radius: 50% 50%;
     }
   }
+  .profile-0,
   .profile-1,
   .profile-2,
   .profile-3 {
     transition: 0.4s all ease-in-out;
     opacity: 1;
-  }
-  .profile-1 {
-    transform: translate3d(65px, 5px, 0);
-  }
-  .profile-2 {
-    transform: translate3d(120px, 5px, 0);
-  }
-  .profile-3 {
-    transform: translate3d(175px, 5px, 0);
   }
   .online {
     opacity: 1;
