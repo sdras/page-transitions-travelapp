@@ -126,8 +126,17 @@ hr {
 .page-enter,
 .page-leave-active {
   opacity: 0;
-  /* transform: translate3d(0, 5px, 0); */
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+/* screen reader only */
+.hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 </style>

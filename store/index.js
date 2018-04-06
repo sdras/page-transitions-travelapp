@@ -4,6 +4,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       page: 'index',
+      indexedUser: 0,
       users: [
         {
           name: 'Sophia Gonzalez',
@@ -16,6 +17,42 @@ const createStore = () => {
           photos: 94,
           days: 32,
           trips: ['Honolulu', 'Burmuda', 'Los Cabos', 'San Antonio']
+        },
+        {
+          name: 'Ben Allen',
+          img: '/profile3.jpg',
+          location: 'Boston',
+          bio:
+            'Bacon nerd. Freelance twitter practitioner. Social media nerd. Pop culture junkie. Proud alcohol advocate. Food geek.',
+          following: 140,
+          followers: 789,
+          photos: 32,
+          days: 5,
+          trips: ['Honolulu', 'Peru', 'San Francisco']
+        },
+        {
+          name: 'Jill Fernandez',
+          img: '/profile4.jpg',
+          location: 'Seattle',
+          bio:
+            'Prone to fits of apathy. Writer. Devoted gamer. Web scholar. Hipster-friendly music advocate. Problem solver. Student. Twitter fanatic.',
+          following: 590,
+          followers: 1705,
+          photos: 45,
+          days: 12,
+          trips: ['Honolulu', 'Tokyo', 'Osaka']
+        },
+        {
+          name: 'Cynthia Obel',
+          img: '/profile5.jpg',
+          location: 'Kentucky',
+          bio:
+            'Producing at the fulcrum of modernism and purpose to craft an compelling and authentic narrative. My opinions belong to myself.',
+          following: 590,
+          followers: 1705,
+          photos: 45,
+          days: 12,
+          trips: ['Honolulu', 'Tokyo', 'Osaka']
         }
       ],
       places: [
@@ -45,6 +82,11 @@ const createStore = () => {
         }
       ]
     },
+    getters: {
+      selectedUser: state => {
+        return state.users[state.indexedUser]
+      }
+    },
     mutations: {
       updatePage(state, pageName) {
         state.page = pageName
@@ -54,6 +96,9 @@ const createStore = () => {
       },
       removeFollower(state) {
         state.users[0].followers--
+      },
+      changeUser(state, i) {
+        state.indexedUser = i
       }
     }
   })

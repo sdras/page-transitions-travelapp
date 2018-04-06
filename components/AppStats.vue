@@ -1,15 +1,15 @@
 <template>
   <div class="stats">
     <div class="bio">
-      <p>{{ users[0].bio }}</p>
+      <p>{{ selectedUser.bio }}</p>
     </div>
     <div>
       <span class="desc">Followers</span><br>
-      <span class="lg">{{ users[0].followers }}</span>
+      <span class="lg">{{ selectedUser.followers }}</span>
     </div>
     <div>
       <span class="desc">Following</span><br>
-      <span class="lg">{{ users[0].following }}</span>
+      <span class="lg">{{ selectedUser.following }}</span>
     </div>
   </div>
 </template>
@@ -17,8 +17,8 @@
 <script>
 export default {
   props: {
-    users: {
-      type: Array
+    selectedUser: {
+      type: Object
     }
   }
 }

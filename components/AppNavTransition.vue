@@ -1,20 +1,13 @@
 <template>
   <transition-group tag="div">
-    <div class="profile-photo" key="profile">
-      <img :src="users[0].img" />
+    <div v-for="(user, i) in users" 
+      @click="changeUser(i)"
+      :key="user.name" 
+      :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
+      :ref="`profile${i}`"
+    > 
       <div class="online"></div>
-    </div>
-    <div class="profile-photo-secondary two" key="profile2">
-      <img src="/profile3.jpg" />
-      <div class="online"></div>
-    </div>
-    <div class="profile-photo-secondary three" key="profile3">
-      <img src="/profile4.jpg" />
-      <div class="online"></div>
-    </div>
-    <div class="profile-photo-secondary four" key="profile4">
-      <img src="/profile5.jpg" />
-      <div class="online"></div>
+      <img :src="user.img" />
     </div>
 
     <button @click="toggleFollow" :class="[following ? followclass : '', follow]" key="follow">
@@ -23,8 +16,8 @@
     </button>
 
     <h2 key="profile-name" class="profile-name">
-      <span v-if="page === 'group'" class="user-trip">{{ users[0].trips[0] }}</span>
-      <span v-else>{{ users[0].name }}</span>
+      <span v-if="page === 'group'" class="user-trip">{{ selectedUser.trips[0] }}</span>
+      <span v-else>{{ selectedUser.name }}</span>
     </h2>
 
     <div @click="addPlace" class="side-icon" key="sideicon">
@@ -51,14 +44,14 @@
         <icon-base icon-name="calendar" width="18" height="18">
           <icon-calendar />
         </icon-base>
-        {{ users[0].days }} days traveling
+        {{ selectedUser.days }} days traveling
       </p>
     </aside>
   </transition-group>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import IconBase from './IconBase.vue'
 import IconMail from './IconMail.vue'
 import IconPlus from './IconPlus.vue'
@@ -77,11 +70,19 @@ export default {
     return {
       following: false,
       follow: 'follow',
-      followclass: 'active-follow'
+      followclass: 'active-follow',
+      activeUser: 'profile-photo',
+      secondaryUser: 'profile-photo-secondary'
     }
   },
-  computed: mapState(['page', 'users']),
+  computed: {
+    ...mapState(['page', 'users', 'indexedUser']),
+    ...mapGetters(['selectedUser'])
+  },
   methods: {
+    changeUser(i) {
+      this.$store.commit('changeUser', i)
+    },
     toggleFollow() {
       if (this.following) {
         this.$store.commit('removeFollower')
@@ -100,6 +101,7 @@ export default {
       }
     },
     addAnimation() {
+      //I love prettier, but it does make this animation code a lot longer and less legible than it could be :/
       const tl = new TimelineMax()
 
       tl.add('start')
@@ -204,6 +206,15 @@ export default {
 
       return tl
     }
+  },
+  watch: {
+    selectedUser() {
+      if (this.page === 'group') {
+        const el = this.$refs.profile0[0]
+        el.style.transform = `translate3d(${-70 +
+          this.indexedUser * 55}px, -70px, 0) scale(0.25)`
+      }
+    }
   }
 }
 </script>
@@ -258,15 +269,14 @@ aside p {
 
 .profile-photo-secondary {
   @include group(150px, 0);
-  width: 50px;
-  height: 50px;
+  width: 200px;
   opacity: 0;
   transition: none;
   img {
     border-radius: 50% 50%;
   }
   .online {
-    @include online(10px, 0px, 1px solid black);
+    @include online(40px, 0px, 1px solid black);
   }
 }
 
@@ -275,7 +285,22 @@ aside p {
   img {
     transition: 0.4s all ease;
     width: 100%;
+    cursor: pointer;
+    &:hover {
+      transition: 0.2s all ease;
+      border: 10px solid white;
+    }
   }
+}
+
+.profile-1 {
+  transform: translate3d(-15px, -70px, 0) scale(0.25);
+}
+.profile-2 {
+  transform: translate3d(40px, -70px, 0) scale(0.25);
+}
+.profile-3 {
+  transform: translate3d(95px, -70px, 0) scale(0.25);
 }
 
 .follow {
@@ -352,20 +377,12 @@ aside p {
       border-radius: 50% 50%;
     }
   }
-  .two,
-  .three,
-  .four {
+  .profile-0,
+  .profile-1,
+  .profile-2,
+  .profile-3 {
     transition: 0.4s all ease-in-out;
     opacity: 1;
-  }
-  .two {
-    transform: translate3d(65px, 5px, 0);
-  }
-  .three {
-    transform: translate3d(120px, 5px, 0);
-  }
-  .four {
-    transform: translate3d(175px, 5px, 0);
   }
   .online {
     opacity: 1;
@@ -380,6 +397,12 @@ aside p {
   }
   .map-pin {
     opacity: 1;
+  }
+}
+
+.index {
+  .profile-photo {
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
