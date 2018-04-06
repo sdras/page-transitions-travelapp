@@ -47,7 +47,7 @@ const createStore = () => {
           img: '/profile5.jpg',
           location: 'Kentucky',
           bio:
-            'Producing at the fulcrum of modernism and purpose to craft an inspiring, compelling and authentic brand narrative. My opinions belong to myself.',
+            'Producing at the fulcrum of modernism and purpose to craft an compelling and authentic narrative. My opinions belong to myself.',
           following: 590,
           followers: 1705,
           photos: 45,

@@ -4,7 +4,7 @@
       @click="changeUser(i)"
       :key="user.name" 
       :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
-      :id="`profile${i}`"
+      :ref="`profile${i}`"
     > 
       <div class="online"></div>
       <img :src="user.img" />
@@ -101,6 +101,7 @@ export default {
       }
     },
     addAnimation() {
+      //I love prettier, but it does make this animation code a lot longer and less legible than it could be :/
       const tl = new TimelineMax()
 
       tl.add('start')
@@ -209,7 +210,7 @@ export default {
   watch: {
     selectedUser() {
       if (this.page === 'group') {
-        const el = document.getElementById('profile0')
+        const el = this.$refs.profile0[0]
         el.style.transform = `translate3d(${-70 +
           this.indexedUser * 55}px, -70px, 0) scale(0.25)`
       }
@@ -401,7 +402,7 @@ aside p {
 
 .index {
   .profile-photo {
-    transform: translate3d(0, 0, 0) scale(1) !important;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
