@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "gsap": "^1.20.4",
-    "lodash": "^4.17.5",
     "mapbox-gl": "^0.44.1",
     "node-sass": "^4.8.3",
     "nuxt": "^1.0.0",
