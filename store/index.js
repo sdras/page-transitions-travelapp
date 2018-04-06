@@ -4,6 +4,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       page: 'index',
+      indexedUser: 0,
       users: [
         {
           name: 'Sophia Gonzalez',
@@ -83,7 +84,7 @@ const createStore = () => {
     },
     getters: {
       selectedUser: state => {
-        return state.users[0]
+        return state.users[state.indexedUser]
       }
     },
     mutations: {
@@ -95,6 +96,9 @@ const createStore = () => {
       },
       removeFollower(state) {
         state.users[0].followers--
+      },
+      changeUser(state, i) {
+        state.indexedUser = i
       }
     }
   })

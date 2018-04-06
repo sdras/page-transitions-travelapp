@@ -1,6 +1,7 @@
 <template>
   <transition-group tag="div">
     <div v-for="(user, i) in users" 
+      @click="changeUser(i)"
       :key="user.name" 
       :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
     > 
@@ -14,8 +15,8 @@
     </button>
 
     <h2 key="profile-name" class="profile-name">
-      <span v-if="page === 'group'" class="user-trip">{{ users[0].trips[0] }}</span>
-      <span v-else>{{ users[0].name }}</span>
+      <span v-if="page === 'group'" class="user-trip">{{ selectedUser.trips[0] }}</span>
+      <span v-else>{{ selectedUser.name }}</span>
     </h2>
 
     <div @click="addPlace" class="side-icon" key="sideicon">
@@ -42,7 +43,7 @@
         <icon-base icon-name="calendar" width="18" height="18">
           <icon-calendar />
         </icon-base>
-        {{ users[0].days }} days traveling
+        {{ selectedUser.days }} days traveling
       </p>
     </aside>
   </transition-group>
@@ -78,6 +79,9 @@ export default {
     ...mapGetters(['selectedUser'])
   },
   methods: {
+    changeUser(i) {
+      this.$store.commit('changeUser', i)
+    },
     toggleFollow() {
       if (this.following) {
         this.$store.commit('removeFollower')
