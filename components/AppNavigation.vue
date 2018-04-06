@@ -53,6 +53,40 @@ export default {
     AppMenuDrawer,
     AppNavTransition
   },
+  methods: {
+    openMenu() {
+      TweenMax.to('.first', 0.2, {
+        x: 18,
+        ease: Sine.easeOut
+      })
+      TweenMax.to('.last', 0.2, {
+        x: -18,
+        ease: Sine.easeOut
+      })
+      TweenMax.staggerTo(
+        '.first, .middle, .last',
+        0.2,
+        {
+          fill: '#7eebe6',
+          ease: Sine.easeOut
+        },
+        0.04
+      )
+    },
+    closeMenu() {
+      TweenMax.to('.first', 0.2, {
+        x: 0,
+        ease: Sine.easeIn
+      })
+      TweenMax.to('.last', 0.2, {
+        x: 0,
+        ease: Sine.easeIn
+      })
+      TweenMax.to('.first, .middle, .last', 0.2, {
+        fill: '#fff'
+      })
+    }
+  },
   computed: {
     ...mapState(['page']),
     ...mapGetters(['selectedUser'])
@@ -66,35 +100,9 @@ export default {
   watch: {
     menuOpened(val) {
       if (val) {
-        TweenMax.to('.first', 0.2, {
-          x: 18,
-          ease: Sine.easeOut
-        })
-        TweenMax.to('.last', 0.2, {
-          x: -18,
-          ease: Sine.easeOut
-        })
-        TweenMax.staggerTo(
-          '.first, .middle, .last',
-          0.2,
-          {
-            fill: '#7eebe6',
-            ease: Sine.easeOut
-          },
-          0.04
-        )
+        this.openMenu()
       } else {
-        TweenMax.to('.first', 0.2, {
-          x: 0,
-          ease: Sine.easeIn
-        })
-        TweenMax.to('.last', 0.2, {
-          x: 0,
-          ease: Sine.easeIn
-        })
-        TweenMax.to('.first, .middle, .last', 0.2, {
-          fill: '#fff'
-        })
+        this.closeMenu()
       }
     }
   }

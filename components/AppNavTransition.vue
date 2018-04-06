@@ -4,6 +4,7 @@
       @click="changeUser(i)"
       :key="user.name" 
       :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
+      :id="`profile${i}`"
     > 
       <div class="online"></div>
       <img :src="user.img" />
@@ -75,7 +76,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['page', 'users']),
+    ...mapState(['page', 'users', 'indexedUser']),
     ...mapGetters(['selectedUser'])
   },
   methods: {
@@ -204,6 +205,15 @@ export default {
 
       return tl
     }
+  },
+  watch: {
+    selectedUser() {
+      if (this.page === 'group') {
+        const el = document.getElementById('profile0')
+        el.style.transform = `translate3d(${-70 +
+          this.indexedUser * 55}px, -70px, 0) scale(0.25)`
+      }
+    }
   }
 }
 </script>
@@ -274,12 +284,14 @@ aside p {
   img {
     transition: 0.4s all ease;
     width: 100%;
+    cursor: pointer;
+    &:hover {
+      transition: 0.2s all ease;
+      border: 10px solid white;
+    }
   }
 }
 
-.profile-0 {
-  transform: translate3d(-70px, -70px, 0) scale(0.25);
-}
 .profile-1 {
   transform: translate3d(-15px, -70px, 0) scale(0.25);
 }
