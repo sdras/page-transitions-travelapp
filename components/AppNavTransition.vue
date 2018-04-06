@@ -82,6 +82,11 @@ export default {
   methods: {
     changeUser(i) {
       this.$store.commit('changeUser', i)
+      if (this.page === 'group') {
+        const el = this.$refs.profile0[0]
+        el.style.transform = `translate3d(${-70 +
+          this.indexedUser * 55}px, -70px, 0) scale(0.25)`
+      }
     },
     toggleFollow() {
       if (this.following) {
@@ -206,15 +211,6 @@ export default {
 
       return tl
     }
-  },
-  watch: {
-    selectedUser() {
-      if (this.page === 'group') {
-        const el = this.$refs.profile0[0]
-        el.style.transform = `translate3d(${-70 +
-          this.indexedUser * 55}px, -70px, 0) scale(0.25)`
-      }
-    }
   }
 }
 </script>
@@ -286,10 +282,6 @@ aside p {
     transition: 0.4s all ease;
     width: 100%;
     cursor: pointer;
-    &:hover {
-      transition: 0.2s all ease;
-      border: 10px solid white;
-    }
   }
 }
 
@@ -383,6 +375,13 @@ aside p {
   .profile-3 {
     transition: 0.4s all ease-in-out;
     opacity: 1;
+  }
+  .profile-photo,
+  .profile-photo-secondary {
+    img:hover {
+      transition: 0.2s all ease;
+      border: 10px solid white;
+    }
   }
   .online {
     opacity: 1;
