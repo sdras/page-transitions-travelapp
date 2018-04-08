@@ -405,6 +405,10 @@ aside p {
   }
 }
 
+.index .profile-photo.profile-0 {
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
 //make the icon aligned with the avatars that are similar on mobile
 @media screen and (max-width: 600px) {
   .group,
