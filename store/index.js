@@ -92,10 +92,10 @@ const createStore = () => {
         state.page = pageName
       },
       addFollower(state) {
-        state.users[0].followers++
+        state.users[state.indexedUser].followers++
       },
       removeFollower(state) {
-        state.users[0].followers--
+        state.users[state.indexedUser].followers--
       },
       changeUser(state, i) {
         state.indexedUser = i
