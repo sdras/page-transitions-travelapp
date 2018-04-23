@@ -9,6 +9,9 @@
 <script>
 import AppNavigation from '~/components/AppNavigation.vue'
 import AppFooter from '~/components/AppFooter.vue'
+import Vue from 'vue'
+
+Vue.config.devtools = true
 
 export default {
   components: {
