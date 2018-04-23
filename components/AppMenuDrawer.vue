@@ -5,15 +5,15 @@
     @enter="enter"
     :css="false">
     <div class="menudrawer" v-if="menuOpened">
-      <nuxt-link exact to="/">{{ users[0].name | firstName }}'s Home</nuxt-link><br />
-      <nuxt-link to="/place">{{ users[0].name | firstName }}'s Places</nuxt-link><br />
-      <nuxt-link to="/group">{{ users[0].name | firstName }}'s Group Trips</nuxt-link>
+      <nuxt-link exact to="/">{{ selectedUser.name | firstName }}'s Home</nuxt-link><br>
+      <nuxt-link to="/place">{{ selectedUser.name | firstName }}'s Places</nuxt-link><br>
+      <nuxt-link to="/group">{{ selectedUser.name | firstName }}'s Group Trips</nuxt-link>
     </div>
   </transition>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import { TweenMax, TimelineMax, Sine, Expo } from 'gsap'
 
 export default {
@@ -64,7 +64,9 @@ export default {
       done()
     }
   },
-  computed: mapState(['page', 'users']),
+  computed: {
+    ...mapGetters(['selectedUser'])
+  },
   filters: {
     firstName(input) {
       var lastIndex = input.lastIndexOf(' ')
@@ -84,7 +86,7 @@ export default {
   top: 45px;
   padding: 20px;
   border-radius: 4px;
-  z-index: 5000;
+  z-index: 10000;
 }
 
 a,

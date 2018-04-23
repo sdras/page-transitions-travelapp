@@ -1,5 +1,9 @@
 <template>
-  <header :class="{ 'place' : (page === 'place'), 'group' : (page === 'group'), 'index' : (page === 'index') }">
+  <header :class="{ 
+    'place' : (page === 'place'), 
+    'group' : (page === 'group'), 
+    'index' : (page === 'index') 
+  }">
 
     <transition-group name="bk" tag="div" class="bk-img">
       <div key="img1" v-if="page === 'index'" class="header-img1"></div>
