@@ -57,12 +57,12 @@ const createStore = () => {
       ],
       places: [
         {
-          name: 'Honululu',
+          name: 'Honolulu',
           stars: 4,
           rating: 8.9,
           img: '/honolulu.jpg',
           description:
-            'Ocean breezes rustle palm trees along the harborfront, while in the cool, mist-shrouded Ko olau Range, forested hiking trails offer postcard city views. At sunset, cool off with an amble around Magic Island or splash in the ocean at Ala Moana Beach.'
+            'Ocean breezes rustle palm trees along the harborfront, while in the cool, mist-shrouded Koʻolau Range, forested hiking trails offer postcard city views. At sunset, cool off with an amble around Magic Island or splash in the ocean at Ala Moana Beach.'
         },
         {
           name: 'Santorini',
