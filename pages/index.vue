@@ -11,7 +11,7 @@
     </div>
     <div class="mapcontain" ref="mapcontain">
       <p>
-        <icon-base icon-name="mappin"><icon-map-pin /></icon-base> 
+        <icon-base icon-name="mappin"><icon-map-pin /></icon-base>
         Checked in at Honolulu location
       </p>
     </div>
@@ -30,13 +30,19 @@ export default {
   },
   computed: mapState(['page', 'users', 'places']),
   mounted() {
-    var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js')
-    mapboxgl.accessToken =
-      'pk.eyJ1Ijoic2RyYXNuZXIiLCJhIjoiY2pmZzBqZmptMjI1eTMzbWl1bGExMHppZyJ9.diPXryPOiyMuqcV4mpNOlg'
-    var map = new mapboxgl.Map({
-      container: this.$refs.mapcontain,
-      style: 'mapbox://styles/sdrasner/cjfg0watl6rkv2sllf6hepdd5'
-    })
+    this.loadMapboxGL().catch(console.error);
+  },
+  methods: {
+    async loadMapboxGL() {
+      const mapboxgl = await import('mapbox-gl/dist/mapbox-gl.js').then(m => m.default)
+
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic2RyYXNuZXIiLCJhIjoiY2pmZzBqZmptMjI1eTMzbWl1bGExMHppZyJ9.diPXryPOiyMuqcV4mpNOlg'
+
+      const map = new mapboxgl.Map({
+        container: this.$refs.mapcontain,
+        style: 'mapbox://styles/sdrasner/cjfg0watl6rkv2sllf6hepdd5'
+      })
+    }
   }
 }
 </script>
