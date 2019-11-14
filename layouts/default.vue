@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
     <app-navigation />
     <nuxt/>
     <app-footer />
@@ -74,6 +74,7 @@ main {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  flex: 1;
 }
 
 .top {
@@ -131,6 +132,12 @@ hr {
   opacity: 0;
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* screen reader only */
