@@ -2,7 +2,7 @@
   <main>
 
     <div class="places">
-      <p class="top">{{ users[0].name }}'s Places</p>
+      <p class="top">{{ selectedUser.name }}'s Places</p>
       <h1>{{ places[0].name }}</h1>
       <p><strong>Rating: {{ places[0].rating }}</strong></p>
       <div class="stars"><app-star-rating /></div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import IconBase from '~/components/IconBase.vue'
 import IconMapPin from '~/components/IconMapPin.vue'
 import AppStarRating from '~/components/AppStarRating.vue'
@@ -36,7 +36,10 @@ export default {
     IconMapPin,
     AppStarRating
   },
-  computed: mapState(['page', 'users', 'places'])
+  computed: {
+    ...mapState(['page', 'users', 'places']),
+    ...mapGetters(['selectedUser'])
+  }
 }
 </script>
 
