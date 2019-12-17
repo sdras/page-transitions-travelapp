@@ -30,9 +30,6 @@ export default {
         scale: 0,
         transformOrigin: '100% 0%'
       })
-      TweenMax.set(el.childNodes, {
-        opacity: 0
-      })
     },
     enter(el, done) {
       TweenMax.fromTo(
