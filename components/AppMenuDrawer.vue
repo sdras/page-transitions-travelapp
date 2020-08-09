@@ -1,20 +1,21 @@
 <template>
-  <transition
-    mode="out-in"
-    @before-enter="beforeEnter"
-    @enter="enter"
-    :css="false">
+  <transition mode="out-in" name="menu">
     <div class="menudrawer" v-if="menuOpened">
-      <nuxt-link exact to="/">{{ selectedUser.name | firstName }}'s Home</nuxt-link><br>
-      <nuxt-link to="/place">{{ selectedUser.name | firstName }}'s Places</nuxt-link><br>
-      <nuxt-link to="/group">{{ selectedUser.name | firstName }}'s Group Trips</nuxt-link>
+      <nuxt-link exact to="/"
+        >{{ selectedUser.name | firstName }}'s Home</nuxt-link
+      ><br />
+      <nuxt-link to="/place"
+        >{{ selectedUser.name | firstName }}'s Places</nuxt-link
+      ><br />
+      <nuxt-link to="/group"
+        >{{ selectedUser.name | firstName }}'s Group Trips</nuxt-link
+      >
     </div>
   </transition>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { TweenMax, TimelineMax, Sine, Expo } from 'gsap'
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -23,57 +24,16 @@ export default {
       default: false
     }
   },
-  methods: {
-    beforeEnter(el) {
-      TweenMax.set(el, {
-        opacity: 0,
-        scale: 0,
-        transformOrigin: '100% 0%'
-      })
-      TweenMax.set(el.childNodes, {
-        opacity: 0
-      })
-    },
-    enter(el, done) {
-      TweenMax.fromTo(
-        el,
-        0.2,
-        {
-          opacity: 0,
-          scale: 0
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          ease: Sine.easeOut
-        }
-      )
-      TweenMax.staggerFromTo(
-        el.childNodes,
-        0.45,
-        {
-          opacity: 0
-        },
-        {
-          delay: 0.1,
-          opacity: 1,
-          ease: Sine.easeOut
-        },
-        0.04
-      )
-      done()
-    }
-  },
   computed: {
-    ...mapGetters(['selectedUser'])
+    ...mapGetters(["selectedUser"])
   },
   filters: {
     firstName(input) {
-      var lastIndex = input.lastIndexOf(' ')
-      return input.substring(0, lastIndex)
+      var lastIndex = input.lastIndexOf(" ");
+      return input.substring(0, lastIndex);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -93,5 +53,19 @@ a,
 a:visited,
 a:active {
   color: white;
+}
+
+.menu-enter-active {
+  transition: all 0.3s ease;
+}
+.menu-leave-active {
+  transition: all 0.25s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.menu-enter,
+.menu-leave-to {
+  transform: scale(0.9);
+  transform-origin: "100% 0%";
+  opacity: 0;
 }
 </style>

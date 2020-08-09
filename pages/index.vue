@@ -1,50 +1,38 @@
 <template>
   <main>
     <div class="places" ref="places">
-      <div v-for="place in places" class="location">
+      <div v-for="place in places" :key="place.name" class="location">
         <img :src="place.img" :alt="place.name" />
         <h2>{{ place.name }}</h2>
-        <p><strong>Rating: {{ place.rating }}</strong></p>
+        <p>
+          <strong>Rating: {{ place.rating }}</strong>
+        </p>
         <p>{{ place.description }}</p>
         <hr />
       </div>
     </div>
     <div class="mapcontain" ref="mapcontain">
       <p>
-        <icon-base icon-name="mappin"><icon-map-pin /></icon-base>
-        Checked in at Honolulu location
+        <icon-base icon-name="mappin"> <icon-map-pin /> </icon-base>Checked in
+        at Honolulu location
       </p>
+      <img src="map.png" alt="Map of Honolulu" />
     </div>
   </main>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import IconBase from '~/components/IconBase.vue'
-import IconMapPin from '~/components/IconMapPin.vue'
+import { mapState } from "vuex";
+import IconBase from "~/components/IconBase.vue";
+import IconMapPin from "~/components/IconMapPin.vue";
 
 export default {
   components: {
     IconBase,
     IconMapPin
   },
-  computed: mapState(['page', 'users', 'places']),
-  mounted() {
-    this.loadMapboxGL().catch(console.error);
-  },
-  methods: {
-    async loadMapboxGL() {
-      const mapboxgl = await import('mapbox-gl/dist/mapbox-gl.js').then(m => m.default)
-
-      mapboxgl.accessToken = 'pk.eyJ1Ijoic2RyYXNuZXIiLCJhIjoiY2pmZzBqZmptMjI1eTMzbWl1bGExMHppZyJ9.diPXryPOiyMuqcV4mpNOlg'
-
-      const map = new mapboxgl.Map({
-        container: this.$refs.mapcontain,
-        style: 'mapbox://styles/sdrasner/cjfg0watl6rkv2sllf6hepdd5'
-      })
-    }
-  }
-}
+  computed: mapState(["page", "users", "places"])
+};
 </script>
 
 <style>
@@ -85,6 +73,9 @@ hr {
   height: 400px;
   p {
     margin: 10px 0;
+  }
+  img {
+    width: 100%;
   }
 }
 

@@ -1,21 +1,21 @@
 <template>
   <div>
     <app-navigation />
-    <nuxt/>
+    <nuxt />
     <app-footer />
   </div>
 </template>
 
 <script>
-import AppNavigation from '~/components/AppNavigation.vue'
-import AppFooter from '~/components/AppFooter.vue'
+import AppNavigation from "~/components/AppNavigation.vue";
+import AppFooter from "~/components/AppFooter.vue";
 
 export default {
   components: {
     AppNavigation,
-    AppFooter
-  }
-}
+    AppFooter,
+  },
+};
 </script>
 
 
@@ -25,7 +25,7 @@ export default {
 body {
   background: white;
   color: #333;
-  font-family: 'Josefin Sans', serif;
+  font-family: "Josefin Sans", serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -65,7 +65,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-weight: normal;
 }
 
